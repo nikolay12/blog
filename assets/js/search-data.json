@@ -27,7 +27,7 @@
       "page8": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
-          "url": "https://fastpages.fast.ai/robots.txt",
+          "url": "/robots.txt",
           "relUrl": "/robots.txt",
           "date": ""
       }
