@@ -6,14 +6,14 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: nikolay's tiny blog
-description: Powered by Fastpages, Jekyll and Github.
+title: nikolay's random posts
+description: A mix of data science, software engineering and politics. Powered by Fastpages, Jekyll and Github.
 github_username: nikolay12
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "blog"
 # OPTIONAL: override baseurl and url if using a custom domain
 # Note: leave out the trailing / from this value. 
-url: "https://fastpages.fast.ai" # the base hostname & protocol for your site, e.g. http://example.com
+#url: "http://nikolov.me.uk" # the base hostname & protocol for your site, e.g. http://example.com
 
 ###########################################################
 #########  Special Instructions for baseurl ###############
