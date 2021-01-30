@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Accepting a Credit Card: a SaaS application in a nutshell (Stripe, Rails4, Devise3) | nikolay’s random posts</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Accepting a Credit Card: a SaaS application in a nutshell (Stripe, Rails4, Devise3)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Recently I blogged about a light-touch workflow which allows registration without setting a password. This blog post and the accompanying git repository take it from there and add credit card registration via Stripe. I was thinking of what could the absolutely minimal SaaS application and came with the conclusion that it recording the credit card details constitutes the absolutely irreducable bit - without it you can’t have a SaaS application. So, this lengthy blog post is about creating such a minimal SaaS application that does nothing but allowing people to sign up and record their credit card details." />
+<meta property="og:description" content="Recently I blogged about a light-touch workflow which allows registration without setting a password. This blog post and the accompanying git repository take it from there and add credit card registration via Stripe. I was thinking of what could the absolutely minimal SaaS application and came with the conclusion that it recording the credit card details constitutes the absolutely irreducable bit - without it you can’t have a SaaS application. So, this lengthy blog post is about creating such a minimal SaaS application that does nothing but allowing people to sign up and record their credit card details." />
+<meta property="og:site_name" content="nikolay’s random posts" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-08-04T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"/2015/08/04/accepting-credit-card-stripe-saas.html","@type":"BlogPosting","headline":"Accepting a Credit Card: a SaaS application in a nutshell (Stripe, Rails4, Devise3)","dateModified":"2015-08-04T00:00:00-05:00","datePublished":"2015-08-04T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"/2015/08/04/accepting-credit-card-stripe-saas.html"},"description":"Recently I blogged about a light-touch workflow which allows registration without setting a password. This blog post and the accompanying git repository take it from there and add credit card registration via Stripe. I was thinking of what could the absolutely minimal SaaS application and came with the conclusion that it recording the credit card details constitutes the absolutely irreducable bit - without it you can’t have a SaaS application. So, this lengthy blog post is about creating such a minimal SaaS application that does nothing but allowing people to sign up and record their credit card details.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="nikolay's random posts" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-65544236-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nikolay&#39;s random posts</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/contact/">Contact</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Accepting a Credit Card: a SaaS application in a nutshell (Stripe, Rails4, Devise3)</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2015-08-04T00:00:00-05:00" itemprop="datePublished">
+        Aug 4, 2015
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      11 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#1-pre-requisites">1. Pre-requisites</a></li>
+<li class="toc-entry toc-h2"><a href="#2-adding-stripe-and-papertrail">2. Adding Stripe and Papertrail</a></li>
+<li class="toc-entry toc-h2"><a href="#3-generating-models-for-a-nutshell-saas-application">3. Generating models for a nutshell SaaS application</a></li>
+<li class="toc-entry toc-h2"><a href="#4-creating-stripe-plans">4. Creating Stripe plans</a></li>
+<li class="toc-entry toc-h2"><a href="#5-creating-subscription-services">5. Creating Subscription services</a></li>
+<li class="toc-entry toc-h2"><a href="#6-changing-the-controllers">6. Changing the controllers</a></li>
+<li class="toc-entry toc-h2"><a href="#6-changing-the-views">6. Changing the views</a></li>
+<li class="toc-entry toc-h2"><a href="#7-further-info-and-credits">7. Further info and credits</a></li>
+</ul><p>Recently I <a href="/2015/07/24/overriding-devise-to-skip-setting-of-password.html">blogged about</a> a light-touch workflow which allows registration without setting a password. This blog post and the <a href="https://github.com/nikolay12/new_devise">accompanying git repository</a> take it from there and add credit card registration via Stripe. I was thinking of what could the absolutely minimal SaaS application and came with the conclusion that it recording the credit card details constitutes the absolutely irreducable bit - without it you can’t have a SaaS application. So, this lengthy blog post is about creating such a minimal SaaS application that does nothing but allowing people to sign up and record their credit card details.</p>
+
+<p>In realistic scenarios applications would first allow free trials and than at their expiry would prompt users to submit their credit card. Many would apply some version of a freemium model where the users can keep a free account but would be regularly tempted to upgrade. This would be too complicated for the purposes of this blog post. So we would simply collect the  credit card details upfront at the registration.</p>
+
+<h2>
+<a class="anchor" href="#1-pre-requisites" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Pre-requisites</h2>
+
+<p>This tutorial assumes that people have already set up a minimal application allowing a password-less registration using Devise as described in <a href="http://nikolov.me.uk/blog/2015/07/24/overriding-devise-to-skip-setting-of-password.html">a previous post</a>. Another pre-requisite is a registration with <a href="http://www.stripe.com">Stripe</a>.</p>
+
+<h2>
+<a class="anchor" href="#2-adding-stripe-and-papertrail" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Adding Stripe and Papertrail</h2>
+
+<p>The starting point for this tutorial is <a href="https://github.com/nikolay12/my_devise">the code</a> for the earlier blog post. The first change is, of course, adding Stripe to the Gemfile:</p>
+
+<p><code class="language-plaintext highlighter-rouge">gem "stripe", '1.21'</code></p>
+
+<p>Another gem that we would add is <a href="https://github.com/airblade/paper_trail">Papertrail</a>. It allows us to create an auditable trail for any changes to selected models. Strictly speaking, adding an auditable trail does not meet the requirement of being absolutely irreducible but it is a good practice to follow in real life so we would include it:</p>
+
+<p><code class="language-plaintext highlighter-rouge">gem 'paper_trail', '~&gt; 3.0.6'</code></p>
+
+<p>We also need to execute</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails generate paper_trail:install --with-changes
+</code></pre></div></div>
+<p>Stripe uses public and private keys to authenticate the user - these can be found in the user profile upon registering. Rails needs to know these keys to be able to authenticate. We add /config/initializers/stripe.rb:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rails.configuration.stripe = {
+    publishable_key: RailsDevise.config.STRIPE_PUBLISHABLE_KEY,
+    secret_key:      RailsDevise.config.STRIPE_SECRET_KEY
+}
+
+Stripe.api_key = \
+  Rails.configuration.stripe[:secret_key]
+</code></pre></div></div>
+<p>At the end of this step the code base shall be identical to commit <a href="https://github.com/nikolay12/new_devise/tree/dd2e27875863d14f2e1fcfb1c76ea61824781afa">dd2e27875863d14f2e1fcfb1c76ea61824781afa</a>.</p>
+
+<p>You need, of course, to run</p>
+
+<p><code class="language-plaintext highlighter-rouge">bundle install</code></p>
+
+<p>to install the gems.</p>
+
+<p>The code above uses the <a href="https://github.com/elabs/econfig">econfig gem</a> to load the environment variables and database credentials. I’m storing these in config/secrets.yml (you just need to enter your values):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>development:
+  STRIPE_PUBLISHABLE_KEY: ""
+  STRIPE_SECRET_KEY: ""
+  MANDRILL_USERNAME: ""
+  MANDRILL_API_KEY: ""
+  MANDRILL_DOMAIN: ""
+  RETURN_EMAIL: ""
+  DEVISE_SECRET: ""
+  secret_key_base: ""
+</code></pre></div></div>
+
+<h2>
+<a class="anchor" href="#3-generating-models-for-a-nutshell-saas-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Generating models for a nutshell SaaS application</h2>
+
+<p>The minimal models needed for a SaaS application requires a plan and a subscription:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g model plan \
+    stripe_id:string \
+    name:string 
+        
+    rails g model subscription \
+    user:references \
+    plan:references \
+    stripe_id:string
+</code></pre></div></div>
+
+<p>Usually, a plan has a price and an interval (e.g. monthly, weekly, etc.) associated with it. We will define this within Stripe. To keep our application DRY we will include in our database is, essentially, only pointers to the data stored in Stripe. We would need the same pointer in the user table:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g migration AddStripeCustomerIdToUser \
+    stripe_customer_id:string
+</code></pre></div></div>
+
+<p>We’ll tighten up the subscription model a bit by setting the foreign keys to be NOT NULL:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class AddChangeColumnNullSubscription &lt; ActiveRecord::Migration
+  def change
+    change_column_null :subscriptions, :user_id, false
+    change_column_null :subscriptions, :plan_id, false
+  end
+end
+</code></pre></div></div>
+
+<p>We’ll also add an audit trail to the models (example below is for Plan but the change is identical for the other two models):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Plan &lt; ActiveRecord::Base
+  has_paper_trail
+end
+</code></pre></div></div>
+
+<p>At the end we need to run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rake db:migrate
+</code></pre></div></div>
+
+<h2>
+<a class="anchor" href="#4-creating-stripe-plans" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Creating Stripe plans</h2>
+
+<p>We will create</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#app/services/create_plan.rb
+class CreatePlan
+  def self.call(options={})
+    Rails.logger.info "Creating plan " + options[:name].to_s + ".."
+    plan = Plan.new(stripe_id: options[:stripe_id], name: options[:name])
+    Rails.logger.info "Plan " + options[:name].to_s + " created!"
+
+    if !plan.valid?
+      Rails.logger.info "Plan not valid.."
+      Rails.logger.info plan.errors.full_messages
+      return plan
+    end
+
+    begin
+      splan = Stripe::Plan.create(
+          id: options[:stripe_id],
+          amount: options[:amount],
+          currency: options[:currency],
+          interval: options[:interval],
+          trial_period_days: options[:trial_period_days],
+          name: options[:name]
+      )
+        Rails.logger.info "stripe insert went well.."
+        Rails.logger.info splan.created
+    rescue Stripe::StripeError =&gt; e
+      Rails.logger.info "stripe insert did not go well.."
+      if e.message != "Plan already exists."
+        Rails.logger.error e.message
+        plan.errors[:base] &lt;&lt; e.message
+        return plan
+      else
+        Rails.logger.info "Plan already exists."
+        Rails.logger.error e.message
+      end
+    end
+
+    plan.save
+
+    return plan
+  end
+end
+</code></pre></div></div>
+<p>and</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#db/seeds.rb
+CreatePlan.call(stripe_id: 'basic', name: 'Basic', amount: 999, interval: 'month', currency: 'gbp', trial_period_days: 5)
+CreatePlan.call(stripe_id: 'standard', name: 'Standard', amount: 2999, interval: 'month', currency: 'gbp', trial_period_days: 5)
+CreatePlan.call(stripe_id: 'pro', name: 'Pro', amount: 9999, interval: 'month', currency: 'gbp', trial_period_days: 5)
+</code></pre></div></div>
+
+<p>Running</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rake db:seed
+</code></pre></div></div>
+
+<p>shall create the plans in Stripe. You can verify that this was successful by logging in your Stripe account:</p>
+
+<p><img src="/images/stripe_plans.png" alt=""></p>
+
+<h2>
+<a class="anchor" href="#5-creating-subscription-services" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Creating Subscription services</h2>
+
+<p>In this tutorial we’ll encapsulate the subscription workflow in two services - one creating the Stripe subscription and another creating the corresponding subscription in our database. The latter shall occur only if the former was successful. This is marked difference to some other Stripe SaaS tutorials, most notably <a href="https://www.masteringmodernpayments.com">the one by Pete Keen</a> and <a href="https://github.com/RailsApps/rails-stripe-membership-saas">the one by Daniel Kehoe</a> (which is to a large extent based on Pete’s). In the mentioned tutorials the creation of subscription in our database occurs even if creating the Stripe subscription fails (e.g. by providing invalid credit card details). This, in my opionion, is a serious flaw. None of these tutorials claim that their code is of production-level quality but I find it wrong to have such shortcoming even in an introductory tutorial as such code snippets tend to eventually propagate in production systems created by inexperienced or inobservant users.</p>
+
+<p>Here is the code for the service creating the Stripe subscription:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#app/services/create_stripe_subscription.rb
+class CreateStripeSubscription
+  def self.call(plan, email_address, token)
+
+    Rails.logger.info "CreateStripeSubscription: email = " + email_address + ", plan.stripe_id = " + plan.stripe_id
+    stripe_sub = nil
+    customer = nil
+
+    begin
+      stripe_customers = Stripe::Customer.all
+
+      stripe_customers.each do |row|
+        if row.email == email_address
+          customer = Stripe::Customer.retrieve(row.id)
+        end
+      end
+
+      if customer.nil?
+        Rails.logger.info "CreateStripeSubscription: Stripe Customer does NOT exist"
+        customer = Stripe::Customer.create(
+            source: token,
+            email: email_address,
+            plan: plan.stripe_id,
+        )
+        stripe_sub = customer.subscriptions.first
+        Rails.logger.info "CreateStripeSubscription: Stripe User ID = " + customer.id.to_s + ", Stripe Subscr ID = " + customer.subscriptions.first.id.to_s
+      else
+        Rails.logger.info "CreateStripeSubscription: Stripe Customer exists"
+        stripe_sub = customer.subscriptions.create(
+            plan: plan.stripe_id
+        )
+        Rails.logger.info "CreateStripeSubscription: Stripe User ID = " + customer.id.to_s + ", Stripe Subscr ID = " + customer.subscriptions.first.id.to_s
+      end
+
+    rescue Stripe::StripeError =&gt; e
+      Rails.logger.error "CreateStripeSubscription failed: " + e.message
+      if !stripe_sub.nil?
+        stripe_sub.errors[:base] &lt;&lt; e.message
+      end
+    end
+
+    stripe_sub
+  end
+end
+</code></pre></div></div>
+
+<p>And here is the code for creating the subsequent subscription in our application database:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#app/services/create_subscription.rb
+class CreateSubscription
+
+  def self.call(plan, email_address, token)
+
+    #Create Stripe Subscription
+    stripe_sub = CreateStripeSubscription.call(
+        plan,
+        email_address,
+        token
+    )
+
+    if !stripe_sub.nil?
+
+      #Look for an user with this email. If not exists - create.
+      user = User.find_by_email(email_address)
+      if user.nil?
+        Rails.logger.info "CreateSubscription: User is nil!"
+        generated_password = Devise.friendly_token.first(8)
+        user = User.new(:email =&gt; email_address, :password =&gt; generated_password, :password_confirmation =&gt; generated_password, :stripe_customer_id =&gt; stripe_sub.customer)
+        if user.valid?
+          Rails.logger.info "CreateSubscription: User is valid!"
+        end
+        user_saved = user.save
+        if !user_saved
+          Rails.logger.error "CreateSubscription: User not saved!"
+          user.errors.each do |attribute, message|
+            Rails.logger.error "  CreateSubscription: user.error = " + message
+          end
+        else
+          Rails.logger.info "CreateSubscription: User saved"
+        end
+      else
+        #TODO: This is a case of someone registering repeatedly (or a past user?). Need to think more on what to do.
+        Rails.logger.info "CreateSubscription: User existed!"
+      end
+
+      if !user.nil? &amp;&amp; !user.errors.any?
+        #Create a new Subscription
+        Rails.logger.info "CreateSubscription: user.email = " + user.email
+        subscription = Subscription.new(
+            plan: plan,
+            user: user
+        )
+        subscription.stripe_id = stripe_sub.id
+        subscription.save!
+        Rails.logger.info "CreateSubscription: Subscription saved"
+      else
+        Rails.logger.info "CreateSubscription: Conditions not met to save Subscription"
+      end
+    else
+      #Flash Message to be handled in controller
+    end
+    generated_password
+  end
+end
+</code></pre></div></div>
+<p>As you can see, the latter service calls the former and proceeds depending on its outcome.</p>
+
+<h2>
+<a class="anchor" href="#6-changing-the-controllers" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Changing the controllers</h2>
+
+<p>In Step 3 above we added attribute to the User model which stores the reference to the customer ID as set in Stripe. The strong parameters in Rails 4 make it necessary to “whitelist” this attribute if we want to set it via mass assignment at the registration. The following change in the application controller accoomplishes this task:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#app/controllers/application_controller.rb
+class ApplicationController &lt; ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+  before_action :configure_devise_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_devise_permitted_parameters
+    registration_params = [:email, :password, :password_confirmation]
+
+    if params[:action] == 'update'
+      devise_parameter_sanitizer.for(:account_update) {
+          |u| u.permit(registration_params) # stripe_customer_id should not be updateable
+      }
+    elsif params[:action] == 'create'
+      devise_parameter_sanitizer.for(:sign_up) {
+          |u| u.permit(registration_params &lt;&lt; :stripe_customer_id)
+      }
+    end
+  end
+end
+</code></pre></div></div>
+<p>The relevant line is</p>
+
+<p><code class="language-plaintext highlighter-rouge">|u| u.permit(registration_params &lt;&lt; :stripe_customer_id)</code></p>
+
+<p>in the “create” action. We are adding the stripe_customer_id to the “white list”.</p>
+
+<p>The other controller we need to change is the Devise registrations controller:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#app/controllers/registrations_controller.rb
+class RegistrationsController &lt; Devise::RegistrationsController
+  before_filter :load_plans
+
+  def new
+    @subscription = Subscription.new
+    super
+  end
+
+  def edit
+    super
+  end
+
+  def destroy
+    super
+  end
+
+  def cancel
+    super
+  end
+
+
+  # POST /resource
+  def create
+    build_resource(sign_up_params)
+
+    generated_password = CreateSubscription.call(
+        @plan,
+        params[:email_address],
+        params[:stripeToken]
+    )
+
+    #resource_saved = resource.save
+    if !generated_password.nil?
+      user = User.find_by_email(params[:email_address])
+      if !user.nil?
+        resource_saved = true
+        resource = user
+      else
+        Rails.logger.error "RegistrationsController#create user is nil!"
+      end
+      MyMailer.welcome(resource, generated_password, {plan: @plan}).deliver_now if resource_saved
+    else
+      Rails.logger.error "RegistrationsController#create failed to register with Stripe!"
+      flash[:error] = "Could not register: either card details wrong or no connection to server"
+    end
+
+    yield resource if block_given?
+    if resource_saved
+      if resource.active_for_authentication?
+        set_flash_message :notice, :signed_up if is_flashing_format?
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      @validatable = devise_mapping.validatable?
+      if @validatable
+        @minimum_password_length = resource_class.password_length.min
+      end
+      respond_with resource
+    end
+  end
+  def update
+    super
+  end
+
+  protected
+
+  def load_plans
+    @plans = Plan.all
+    @plans.each do |row|
+      Rails.logger.info "RegistrationsController#load_plans: Looping through the Plans.."
+      Rails.logger.info row.inspect
+    end
+
+    @plan = Plan.find(params[:plan_id])
+    if @plan.nil?
+      Rails.logger.error "RegistrationsController#load_plans: plan is nil!"
+    else
+      Rails.logger.info "RegistrationsController#load_plans: plan is NOT nil!"
+    end
+
+  end
+end
+</code></pre></div></div>
+<p>As you can see, we override the create action to call the subscription service and proceed depending on its outcome.</p>
+
+<h2>
+<a class="anchor" href="#6-changing-the-views" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Changing the views</h2>
+
+<p>First, we need to add an information on the plans available for subscription. We do this in the index view of the visitor controller:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;% if user_signed_in? %&gt;
+&lt;% else %&gt;
+    &lt;div id="welcome" class="span7"&gt;
+      &lt;h1&gt;Stripe SaaS Tutorial&lt;/h1&gt;
+      &lt;h3&gt;Learn how to build a subscription site&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="row col-sm-12 plans"&gt;
+      &lt;div class="col-sm-2 well"&gt;
+        &lt;div class="plan"&gt;&lt;h2&gt;Basic&lt;/h2&gt;&lt;/div&gt;
+        &lt;ul class="list-unstyled"&gt;
+          &lt;li&gt;One unit a month&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h3&gt;£9.99/month&lt;/h3&gt;
+        &lt;%= link_to 'Subscribe', new_user_registration_path(plan_id: 1), :class =&gt; 'btn btn-primary' %&gt;
+      &lt;/div&gt;
+      &lt;div class="col-sm-2 well featured"&gt;
+        &lt;div class="plan featured-plan"&gt;&lt;h2&gt;Standard&lt;/h2&gt;&lt;/div&gt;
+        &lt;ul class="list-unstyled"&gt;
+          &lt;li&gt;Ten units a month&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h3&gt;£29.99/month&lt;/h3&gt;
+        &lt;%= link_to 'Subscribe', new_user_registration_path(plan_id: 2), :class =&gt; 'btn btn-primary' %&gt;
+      &lt;/div&gt;
+      &lt;div class="col-sm-2 well"&gt;
+        &lt;div class="plan"&gt;&lt;h2&gt;Pro&lt;/h2&gt;&lt;/div&gt;
+        &lt;ul class="list-unstyled"&gt;
+          &lt;li&gt;Thirty units a month&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h3&gt;£99.99/month&lt;/h3&gt;
+        &lt;%= link_to 'Subscribe', new_user_registration_path(plan_id: 3), :class =&gt; 'btn btn-primary' %&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+&lt;% end %&gt;
+</code></pre></div></div>
+<p>Thus, the starting page of our application would look like this:</p>
+
+<p><img src="/images/start_page.png" alt=""></p>
+
+<p>The next change is to the registration view which collects the credit card info:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="authform"&gt;
+  &lt;h3&gt;Subscribing to &lt;%= @plan.name %&gt;&lt;/h3&gt;
+  &lt;%= form_for(resource, :as =&gt; resource_name, :url =&gt; registration_path(resource_name), :html =&gt; { :role =&gt; 'form'}) do |f| %&gt;
+  &lt;input type="hidden" name="plan_id" value="&lt;%= @plan.id %&gt;" /&gt;
+  &lt;span class="payment-errors"&gt;&lt;/span&gt;
+  &lt;div class="form-row"&gt;
+  &lt;label&gt;
+    &lt;span&gt;Email Address&lt;/span&gt;
+    &lt;input type="email" size="20" name="email_address"/&gt;
+  &lt;/label&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-row"&gt;
+  &lt;label&gt;
+    &lt;span&gt;Card Number&lt;/span&gt;
+    &lt;input type="text" size="20" data-stripe="number"/&gt;
+  &lt;/label&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-row"&gt;
+  &lt;label&gt;
+    &lt;span&gt;CVC&lt;/span&gt;
+    &lt;input type="text" size="4" data-stripe="cvc"/&gt;
+  &lt;/label&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="form-row"&gt;
+  &lt;label&gt;
+    &lt;span&gt;Expiration (MM/YYYY)&lt;/span&gt;
+    &lt;input type="text" size="2" data-stripe="exp-month"/&gt;
+  &lt;/label&gt;
+  &lt;span&gt; / &lt;/span&gt;
+  &lt;input type="text" size="4" data-stripe="exp-year"/&gt;
+  &lt;/div&gt;
+  
+  &lt;button type="submit"&gt;Pay Now&lt;/button&gt;
+  &lt;% end %&gt;
+&lt;/div&gt;
+</code></pre></div></div>
+<p>It would look like this:</p>
+
+<p><img src="/images/ccard.png" alt=""></p>
+
+<p>We will also change the mailer view so that the user gets info on both password he was assigned (as I have specifically focused in this and previous tutorial on password-less registration) and the plan he has chosen:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p&gt;Welcome to Our Application!&lt;/p&gt;
+
+&lt;p&gt;You have signed up for the &lt;%= @plan.name %&gt; plan.&lt;/p&gt;
+
+&lt;p&gt;We've generated a password for you: &lt;%= @token %&gt;&lt;/p&gt;
+
+&lt;p&gt;If you prefer you can change it (under "Account/Settings").&lt;/p&gt;
+</code></pre></div></div>
+
+<p>That’s it. Now you can test. Stripe has a list of credit card numbers to test specific test scenarios. The number <code class="language-plaintext highlighter-rouge">4242 4242 4242 4242</code> always succeeds - you can test with it but make sure to set the date of validity of the credit card in the future.</p>
+
+<p>Voila!</p>
+
+<h2>
+<a class="anchor" href="#7-further-info-and-credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Further info and credits</h2>
+
+<p>The best accompanying source to this tutorial is the corresponding <a href="https://github.com/nikolay12/new_devise">git repository</a>. The current commit is <a href="https://github.com/nikolay12/new_devise/tree/427de90f1055895ded68f1f5e3c587334f64730b">427de90f1055895ded68f1f5e3c587334f64730b</a>.</p>
+
+<p>I’ve learned a lot from Pete Keen’s <a href="masteringmodernpayments.com">“Mastering Modern Payments”</a> and from Daniel’s Kehoe <a href="https://github.com/RailsApps/rails-stripe-membership-saas">Rails SaaS example</a> (the above git repository is a fork of a Stripe-unrelated git repository of him). But, of course, most instructive was playing with Stripe’s <a href="https://stripe.com/docs/api">excellent API</a>.</p>
+
+  </div><a class="u-url" href="/2015/08/04/accepting-credit-card-stripe-saas.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A mix of data science, software engineering and politics. Powered by Fastpages, Jekyll and Github.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
