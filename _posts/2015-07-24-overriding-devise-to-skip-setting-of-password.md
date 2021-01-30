@@ -2,6 +2,7 @@
 toc: true
 layout: post
 title: Overriding Devise to Skip Setting of Password (Rails4, Devise3)
+comments: true
 ---
 I've been thinking about a light-touch workflow which allows a prospective user to register without setting a password. My first idea was to override the confirmable module (i.e. to invite the user to set a password as part of the confirmation) but I dropped it as it introduces an interim state (an unconfirmed account) and for me this is an unnecessary complication. My idea was to make the registration <i>simpler</i> and requiring a confirmation would be the exact opposite.
 

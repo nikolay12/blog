@@ -2,6 +2,7 @@
 toc: true
 layout: post
 title: "Accepting a Credit Card: a SaaS application in a nutshell (Stripe, Rails4, Devise3)"
+comments: true
 ---
 Recently I [blogged about]({{ site.baseurl }}/2015/07/24/overriding-devise-to-skip-setting-of-password.html) a light-touch workflow which allows registration without setting a password. This blog post and the [accompanying git repository](https://github.com/nikolay12/new_devise) take it from there and add credit card registration via Stripe. I was thinking of what could the absolutely minimal SaaS application and came with the conclusion that it recording the credit card details constitutes the absolutely irreducable bit - without it you can't have a SaaS application. So, this lengthy blog post is about creating such a minimal SaaS application that does nothing but allowing people to sign up and record their credit card details. 
 
