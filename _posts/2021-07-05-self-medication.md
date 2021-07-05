@@ -8,7 +8,7 @@ Self-medication has a negative connotation attached to it. The established norm 
 
 My argument is that self-medication is **unavoidable** and **useful addition** to the mainstream health service provision.
 
-# The practicalities
+## The practicalities
 
 We have to admit that it is not practical to *always* consult your doctor. It means, at the very least, asking for an appointment and attending it.
 
@@ -20,17 +20,17 @@ And, third, while the services of the GPs (and, sometimes, specialist doctors) a
 
 Thus, inevitably, for a lot of non-critical medical needs we rely on off-the-shelf medication or some other forms of self-treatment. In the age of Google and Sci-Hub almost the entire medical knoweldge is available for free online. People should be encouraged to make use of it to self-educate about their medical needs.
 
-# My own experience
+## My own experience
 
 I am not a clinician but I spent a part of my professional experience in biomedical R&D so I am used to reading academic papers in medicine and biology. Thus I am certainly not a complete layman. However, for my own medical needs and for those of relatives I have read a lot of papers that are far from my own expertise (which is confined to genomics, bioinformatics and data science). So I am aware that it takes time to familiarise with the concepts and the jargon of a particular medical field.
 
 Still, I believe that many people can benefit from self-educating about their medical needs. I'll list below my own experience with self-education and, occasionally, self-medication.
 
-## Sleep-related medication
+### Sleep-related medication
 
 My life includes periods where I was "burning the candle at both ends". This involved mostly the years of graduate study but also some periods in my professional career. I tend to be more productive in the evenings and during the night so in such periods I aggressively invaded my night time and re-assigned it to work and study. While I was young (my 20s) this was not a big deal. But, later I found it increasingly difficult to cope with the consequences of sleep deprivation. So I started looking for a way to treat the consequences of my unhealthy work-life balance.
 
-### Modafinil
+#### Modafinil
 
 I stumbled on Modafinil by browsing various bio-hacking forums. I consulted the medical literature. The consensus was that it is both safe and effective in treating sleep deprivation. So back in 2010 I ordered a pack through one of the less-dodgy-looking internet pharmacies.
 
@@ -42,7 +42,7 @@ I need to add that in my case modafinil tends to be effective only if I use it i
 
 So, while modafinil is not addressing any critical medical need it, nonetheless, adds to my quality of life. I doubt that I would be able to get it without first self-educating and self-medicating myself.
 
-### Melatonin
+#### Melatonin
 
 Maybe due to my unhealthy habit of invading my night time and using it for work/study I developed sleep-related issues (insomnia, delayed sleep onset). While I tend to blame my 20s and early 30s for it (later I consciously started avoiding "night shifts") it may be due to genetics, too, as both my parents have similar issues (in particular my mom has very irregular sleep pattern)
 
@@ -62,7 +62,7 @@ So, I am not a big fan of Melatonin. But I still use it if I find myself sleeple
 
 I'm aware that this may be not a great example in favor of self-medication as melatonin is an established non-prescription treatment for insomnia but I think that it still illustrates that it is a good idea to self-educate and experiment once you establish that the possible benefits outweigh any risks.
 
-## Psoriasis
+### Psoriasis
 
 Till my 40s I never had issues with psoriasis. But it runs in the family so I might have some genetic predisposition. A few years ago I had some difficult time in my personal life. It had effects on my health, too. This was the first time (and so far the last) when I experienced issues with psoriasis.
 
@@ -74,6 +74,6 @@ I continued using the second ointment during that time so I can't attribute the 
 
 On this occasion my own self-research and self-medication solved a real health issue.
 
-# TL;DR
+## TL;DR
 
 I believe that self-education and *informed* self-experimentation are important elements in taking care of your health and well-being - and that they should be encouraged. 
