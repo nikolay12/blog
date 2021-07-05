@@ -1,14 +1,14 @@
 ---
 toc: false
 layout: post
-title: "Self-medication - not an alternative to the classical health service provision but an addition to it"
+title: "Self-medication: not an alternative to the classical health service provision but an addition to it"
 comments: true
 ---
 Self-medication has a negative connotation attached to it. The established norm is that it is wrong. You are supposed to always consult your doctor. I am not sure how often this is said as a sort of legal hedge ('I don't want you to sue me') or simply out of habit.
 
 My argument is that self-medication is **unavoidable** and **useful addition** to the mainstream health service provision.
 
-#The practicalities
+# The practicalities
 
 We have to admit that it is not practical to *always* consult your doctor. It means, at the very least, asking for an appointment and attending it.
 
@@ -20,7 +20,7 @@ And, third, while the services of the GPs (and, sometimes, specialist doctors) a
 
 Thus, inevitably, for a lot of non-critical medical needs we rely on off-the-shelf medication or some other forms of self-treatment. In the age of Google and Sci-Hub almost the entire medical knoweldge is available for free online. People should be encouraged to make use of it to self-educate about their medical needs.
 
-#My own experience
+# My own experience
 
 I am not a clinician but I spent a part of my professional experience in biomedical R&D so I am used to reading academic papers in medicine and biology. Thus I am certainly not a complete layman. Still, for my own medical needs and for those of relatives I have read a lot of papers that are far from my own expertise (which is confined to genomics, bioinformatics and data science). And I am aware that it takes time to familiarise with the concepts and the jargon of a particular medical field. Still, I believe that many people can benefit from self-educating about their medical needs. I'll list below my own experience with self-education and, occasionally, self-medication.
 
