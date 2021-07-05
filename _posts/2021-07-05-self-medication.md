@@ -70,7 +70,7 @@ I went to my GP and got prescribed an ointment. I used it for a few weeks to no 
 
 At the end, I did some extensive research in both patient forums and in the literature and I found references to ultraviolet therapy which seemed promising. So I ordered from Amazon or Ebay an ultraviolet lamp. I was careful to limit the exposure of psoriasis spots to violet light to the recommended limits. And - voila! - it solved the issues in just 2 weeks.
 
-I continued using the second ointment during that time so I can't attribute the affect only to the lamp but I am inclined to think that it was the lamp which produce most of the impact.
+I continued using the second ointment during that time so I can't attribute the affect only to the lamp but I am inclined to think that it was the lamp which produced most of the impact.
 
 On this occasion my own self-research and self-medication solved a real health issue.
 
