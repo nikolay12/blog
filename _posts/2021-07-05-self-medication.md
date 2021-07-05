@@ -18,7 +18,7 @@ Secondly, attending to a doctor visit is not always convenient to fit in your sc
 
 And, thirdly, while the services of the GPs (and, sometimes, specialist doctors) are available free of cost in many European countries this is not the case everywhere in the world. So, there might be a cost associated with a visit to a dictor.
 
-Thus, inevitably, for a lot of non-critical medical needs we rely on off-the-shelf medication or some other forms of self-treatment. In the age of Google and Sci-Hub almost the entire medical knoweldge is available for free online. People should be encouraged to make use of it to self-educate about their medical needs.
+Thus, inevitably, for a lot of non-critical medical needs we rely on off-the-shelf medication or some other forms of self-treatment. My argument is that this is, actually, great. Not only it saves resources (valuable doctor time) but it may, actually, lead to a better outcome in terms of health and well-being. In the age of Google and Sci-Hub almost the entire medical knoweldge is available for free online. People should be encouraged to make use of it to self-educate about their medical needs.
 
 ## My own experience
 
