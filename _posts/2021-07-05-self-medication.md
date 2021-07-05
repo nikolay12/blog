@@ -22,7 +22,9 @@ Thus, inevitably, for a lot of non-critical medical needs we rely on off-the-she
 
 # My own experience
 
-I am not a clinician but I spent a part of my professional experience in biomedical R&D so I am used to reading academic papers in medicine and biology. Thus I am certainly not a complete layman. Still, for my own medical needs and for those of relatives I have read a lot of papers that are far from my own expertise (which is confined to genomics, bioinformatics and data science). And I am aware that it takes time to familiarise with the concepts and the jargon of a particular medical field. Still, I believe that many people can benefit from self-educating about their medical needs. I'll list below my own experience with self-education and, occasionally, self-medication.
+I am not a clinician but I spent a part of my professional experience in biomedical R&D so I am used to reading academic papers in medicine and biology. Thus I am certainly not a complete layman. However, for my own medical needs and for those of relatives I have read a lot of papers that are far from my own expertise (which is confined to genomics, bioinformatics and data science). So I am aware that it takes time to familiarise with the concepts and the jargon of a particular medical field.
+
+Still, I believe that many people can benefit from self-educating about their medical needs. I'll list below my own experience with self-education and, occasionally, self-medication.
 
 ## Sleep-related medication
 
@@ -30,7 +32,7 @@ My life includes periods where I was "burning the candle at both ends". This inv
 
 ### Modafinil
 
-This is how stumbled on Modafinil. I read on various bio-hacking forums about it. I also consulted the medical literature. The consensus was that it is both safe and effective in treating sleep deprivation. So back in 2010 I ordered a pack through one of the less-dodgy-looking internet pharmacies.
+I stumbled on Modafinil by browsing various bio-hacking forums. I consulted the medical literature. The consensus was that it is both safe and effective in treating sleep deprivation. So back in 2010 I ordered a pack through one of the less-dodgy-looking internet pharmacies.
 
 My experience with it was in line with the reports online - it is, indeed, very effective in treating sleep deprivation (a lot better than coffee). So it became a staple for me - it is, probably, the medicine I consumed most often over the last decade. Through experimentation I established that 100mg once a day suits me best - less than that I feel no effect, more than that does not help but may add some side-effects (palpitation).
 
@@ -50,7 +52,11 @@ My experience with it is positive but, still, not completely encouraging.
 
 It, indeed, helped with accelerating sleep onset. However, not all was great.
 
-First, I noticed that I need to regularly increase the dosage to get the same effect. I started with 2mg and than had to transition to 3mg and than to 4mg. Second, I noticed that it limits my sleep to 6 hours. I initially thought that this may be helped by replacing the regular pills with slow-release ones. Didn't change anything. Gwern finds this sleep reduction to be a good thing. I am not so sure about it. After a few such nights I start to feel groggy. It seems that I need a longer sleep to feel refreshed. Also, I noticed on my Amazfit report that when I take Melatonin my deep sleep, essentially, disappears - all I get is light sleep and REM. this might explain why I feel groggy after 2 or 3 nights of Melatonin-induced sleep.
+Firstly, I noticed that I need to regularly increase the dosage to get the same effect. I started with 2mg and than had to transition to 3mg and than to 4mg. 
+
+Secondly, I noticed that it limits my sleep to 6 hours. I initially thought that this may be helped by replacing the regular pills with slow-release ones. Didn't change anything. Gwern finds this sleep reduction to be a good thing. I am not so sure about it. After a few such nights I start to feel groggy. It seems that I need a longer sleep to feel refreshed.
+
+Thirdly, I noticed on my Amazfit report that when I take Melatonin my deep sleep, essentially, disappears - all I get is light sleep and REM. This might explain why I feel groggy after 2 or 3 nights of Melatonin-induced sleep.
 
 So, I am not a big fan of Melatonin. But I still use it if I find myself sleepless at 2am (which happens at least 2-3 times per month).
 
@@ -58,9 +64,13 @@ I'm aware that this may be not a great example in favor of self-medication as me
 
 ## Psoriasis
 
-Till my 40s I never had issues with psoriasis. But it runs in the family so I might have some genetic predisposition. A few years ago I had some difficult time in my personal life. It had effect on my health, too. This was the first time (and so far the last) when I experienced issues with psoriasis. I went to my GP and got prescribed an ointment. I used it for a few weeks to no effect. Than I went again and got prescribed another one. The second one had some modest effect after a few weeks of usage. I can't recall the brands of the ointments and since I can't access my own prescriptions (NHS is great with storing all your prescriptions electronically but does not trust you with your own data) I can't add much details. I only remember that one of the ointments contained betamethasone.
+Till my 40s I never had issues with psoriasis. But it runs in the family so I might have some genetic predisposition. A few years ago I had some difficult time in my personal life. It had effects on my health, too. This was the first time (and so far the last) when I experienced issues with psoriasis.
 
-At the end, I did some extensive research in both patient forums and in the literature and I found reference to ultraviolet therapy. So I ordered from Amazon or Ebay an ultraviolet lamp. And - voila! - it solved the issues in just 2 weeks. I continued using the second ointment during that time so I can't attribute the affect only to the lamp but I am inclined to think that it was the lamp which produce most of the impact.
+I went to my GP and got prescribed an ointment. I used it for a few weeks to no effect. Than I went again and got prescribed another one. The second one had some modest effect after a few weeks of usage. I can't recall the brands of the ointments and since I can't access my own prescriptions (NHS is great with storing all your prescriptions electronically but does not trust you with your own data) I can't add much details. I only remember that one of the ointments contained betamethasone.
+
+At the end, I did some extensive research in both patient forums and in the literature and I found references to ultraviolet therapy which seemed promising. So I ordered from Amazon or Ebay an ultraviolet lamp. I was careful to limit the exposure of psoriasis spots to violet light to the recommended limits. And - voila! - it solved the issues in just 2 weeks.
+
+I continued using the second ointment during that time so I can't attribute the affect only to the lamp but I am inclined to think that it was the lamp which produce most of the impact.
 
 On this occasion my own self-research and self-medication solved a real health issue.
 
