@@ -66,7 +66,7 @@ I'm aware that this may be not a great example in favor of self-medication as me
 
 Till my 40s I never had issues with psoriasis. But it runs in the family so I might have some genetic predisposition. A few years ago I had some difficult time in my personal life. It had effects on my health, too. This was the first time (and so far the last) when I experienced issues with psoriasis.
 
-I went to my GP and got prescribed an ointment. I used it for a few weeks to no effect. Than I went again and got prescribed another one. The second one had some modest effect after a few weeks of usage. I can't recall the brands of the ointments and since I can't access my prescriptions (NHS is great with storing all your prescriptions electronically but does not trust you with your own data) I can't add much details. I only remember that one of the ointments contained betamethasone.
+I went to my GP and got prescribed an ointment. I used it for a few weeks to no effect. Than I went again and got prescribed another one. The second one had some modest effect after a few weeks of usage. I can't recall the brands of the ointments and since I can't access my prescriptions (NHS is great with storing all your prescriptions electronically but does not trust you with your own data) I can't add much details. I only remember that one of the ointments (likely the second one) contained betamethasone.
 
 At the end, I did some extensive research in both patient forums and in the literature and I found references to ultraviolet therapy which seemed promising. So I ordered from Amazon or Ebay an ultraviolet lamp. I was careful to limit the exposure of psoriasis spots to violet light to the recommended limits. And - voila! - it solved the issues in just 2 weeks.
 
