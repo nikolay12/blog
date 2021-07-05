@@ -46,7 +46,7 @@ So, while modafinil is not addressing any critical medical need it, nonetheless,
 
 Maybe due to my unhealthy habit of invading my night time and using it for work/study I developed sleep-related issues (insomnia, delayed sleep onset). While I tend to blame my 20s and early 30s for it (later I consciously started avoiding "night shifts") it may be due to genetics, too, as both my parents have similar issues (in particular my mom has very irregular sleep pattern)
 
-By chance I stumbled on [gwern's excellent blog](https://www.gwern.net/Nootropics) and decided to try Melatonin to help with sleep onset.
+By chance I stumbled on [gwern's excellent blog](https://www.gwern.net/Nootropics) and decided to try Melatonin as a way to accelerate sleep onset.
 
 My experience with it is positive but, still, not completely encouraging.
 
