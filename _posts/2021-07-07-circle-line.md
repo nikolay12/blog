@@ -12,7 +12,7 @@ comments: true
 
 На кратко: идеята е да жп линията, която обхожда София, но от години не се използва да се превърне в линеен парк с зелена полоса, велопътека и различни съоръжения и атракциони обединени в споделено публично пространство.
 
-![]({{ site.baseurl }}/images/green-ring-sofia.png)
+![]({{ site.baseurl }}/images/green-ring-sofia.png "Credit: https://www.greenlinesofia.com/project")
 
 Аз лично приветствам това.
 
