@@ -56,7 +56,7 @@ comments: true
 
 През 1992г в Букурещ завършват кръговата линия М1 с обща дължина от 31км:
 
-![](https://i.imgur.com/PtX9xjc.png "Източник: https://commons.wikimedia.org/wiki/File:Metro_Bucure%C8%99ti.svg")
+![](https://i.imgur.com/PtX9xjc.png "Източник: https://bit.ly/36lBi5H")
 
 Букурещ е с население от 2 млн, т.е. с около 1/3 по-голям от софийското, но изоставената жп. линия в София е значително по-къса - около 20км.
 
