@@ -68,7 +68,7 @@ comments: true
 
 През 2006г в Осло бе завършена т.н. [Ringbanen](https://en.wikipedia.org/wiki/Ring_Line_(Oslo)) (на англ. Ring Line, на бъл. Кръгова Линия), която заедно със съществуващите линии създаде кръг с дължина от 8.3км около централната част на Осло.
 
-![](https://commons.wikimedia.org/wiki/File:Oslo_Metro_map.svg)
+![](https://i.imgur.com/ot5QhQE.png "Източник: https://commons.wikimedia.org/wiki/File:Oslo_Metro_map.svg")
 
 Като дължина тази кръгова линия е над 2 пъти по-къса от дължината на изоставената жп линия в София. Но и Осло е град със значително по-малко население - около 700х души (приблизително 2 пъти по-малко от населението на София).
 
@@ -76,7 +76,7 @@ comments: true
 
 През 2019г в Копенхаген бе завършена [кръгова линия](https://en.wikipedia.org/wiki/City_Circle_Line) (на дат. Cityringen, също обозначена като М3) с обща дължина от 15.5км.
 
-![](https://upload.wikimedia.org/wikipedia/commons/5/59/Copenhagen_Metro_2020.svg)
+![](https://upload.wikimedia.org/wikipedia/commons/5/59/Copenhagen_Metro_2020.svg "Източник: https://upload.wikimedia.org/wikipedia/commons/5/59/Copenhagen_Metro_2020.svg")
 
 Като дължина тази линия се доближава до дължината на изоставената жп линия в София, а Копенхаген е със значително по-малко население от София (800хил).
 
@@ -84,7 +84,7 @@ comments: true
 
 През 2020г в Лисабон започна строежа на [разширение на метромрежата](https://www.railwaypro.com/wp/contract-awarded-for-lisbon-metro-expansion/), което заедно със съществуващите мрежи ще създаде кръгова линия около централната част на Лисабон:
 
-![](https://www.railwaypro.com/wp/wp-content/uploads/2020/05/lisbon-metro-expansion-768x543.png)
+![](https://www.railwaypro.com/wp/wp-content/uploads/2020/05/lisbon-metro-expansion-768x543.png "Източник: https://www.railwaypro.com/wp/wp-content/uploads/2020/05/lisbon-metro-expansion-768x543.png")
 
 Също като Осло и Копенхаген Лисабон е с население значително под това на София (500хил).
 
@@ -92,7 +92,7 @@ comments: true
 
 До тук дискусията беше основно за линии, които описват пълен кръг. Но, реално, това не е задължително да е така. Доста по-често се срещат случаите на линии-дъга. Метромрежите понякога включват повече от една такива дъги. Така, например, Виенското метро вкл. 2 дъги (U2 и U4), всяка от които които описва полу-кръг около централната част на града и продължава към по-крайни райони. Общата дължина на тези 2 линии е 33.2км.
 
-![](https://commons.wikimedia.org/wiki/File:U-Bahnnetz_Wien_2019.png)
+![](https://i.imgur.com/jM5I04H.png "Източник: https://commons.wikimedia.org/wiki/File:U-Bahnnetz_Wien_2019.png")
 
 Виена е по-голяма от София (прибл. 2 мил. жители), но и кръговото трасе у нас би било по-късо.
 
