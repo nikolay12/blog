@@ -44,7 +44,7 @@ So, while modafinil is not addressing any critical medical need it, nonetheless,
 
 #### Melatonin
 
-Maybe due to my unhealthy habit of invading my night time and using it for work/study I developed sleep-related issues (insomnia, delayed sleep onset). While I tend to blame my 20s and 30s for it (later I consciously started avoiding "night shifts") it may be due to genetics, too, as both my parents have similar issues (in particular my mom has very irregular sleep pattern)
+Maybe due to my unhealthy habit of invading my night time and using it for work/study I developed sleep-related issues (insomnia, delayed sleep onset). While I tend to blame my 20s and 30s for it (later I consciously started avoiding "night shifts") it may be due to genetics, too, as both my parents have similar issues (in particular my mom has a very irregular sleep pattern)
 
 By chance I stumbled on [gwern's excellent blog](https://www.gwern.net/Nootropics) and decided to try Melatonin as a way to accelerate sleep onset. I also checked the literature - Melatonin seems safe even in long-term use.
 
@@ -64,13 +64,13 @@ I'm aware that this may be not a great example in favor of self-medication as me
 
 ### Psoriasis
 
-Till my 40s I never had issues with psoriasis. But it runs in the family so I might have some genetic predisposition. A few years ago I had some difficult time in my personal life. It had effects on my health, too. This was the first time (and so far the last) when I experienced issues with psoriasis.
+Till my 40s I never had issues with psoriasis. But it runs in the family so I might have some genetic predisposition. A few years ago I had some difficult time in my personal life. It had effects on my health, too. This was the first time (and, luckily, so far the last) when I experienced issues with psoriasis.
 
 I went to my GP and got prescribed an ointment. I used it for a few weeks to no effect. Than I went again and got prescribed another one. The second one had some modest effect after a few weeks of usage. I can't recall the brands of the ointments and since I can't access my prescriptions (NHS is great with storing all your prescriptions electronically but does not trust you with your own data) I can't add much details. I only remember that one of the ointments (likely the second one) contained betamethasone.
 
-At the end, I did some extensive research in both patient forums and in the literature and I found references to ultraviolet therapy which seemed promising. So I ordered from Amazon or Ebay an ultraviolet lamp. I was careful to limit the exposure of psoriasis spots to violet light to the recommended limits. And - voila! - it solved the issues in just 2 weeks.
+At the end, I did some extensive research in both patient forums and in the literature and I found references to ultraviolet light therapy which seemed promising. So I ordered from Amazon or Ebay an UV lamp. I was careful to limit the exposure of psoriasis spots to UV light to the recommended limits. And - voila! - it solved the issues in just 2 weeks.
 
-I continued using the second ointment during that time so I can't attribute the affect only to the lamp but I am inclined to think that it was the lamp which produced most of the impact.
+I continued using the second ointment during that time so I can't attribute the effect only to the lamp but I am inclined to think that it was the lamp which produced most of the impact.
 
 On this occasion my own self-research and self-medication solved a real health issue.
 
